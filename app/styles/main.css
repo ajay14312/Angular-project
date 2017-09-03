@@ -1,0 +1,200 @@
+a:hover,:focus{
+	text-decoration: none!important;
+}
+input[type=text] {
+    width: 230px;
+    box-sizing: border-box;
+    border: 0 none;
+    border-radius: 2px 2px 0 0;
+    font-size: 16px;
+    background-color: white;
+    background-image: url('../images/searchicon.png');
+    background-position: 10px 10px; 
+    background-repeat: no-repeat;
+    padding: 12px 20px 12px 40px;
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: visible;
+    background-color: #333;
+    padding-top: 25px;
+}
+
+ul.ul{
+	height: 100px;
+}
+
+ul.ul li {
+    float: left;
+}
+ul#movieSearchList li {
+	padding-top: 15px;
+    padding-left: 5px;
+    display: inline;
+    font-size: 15px;
+    cursor: pointer;
+	
+}
+ul#movieSearchList {
+    -webkit-columns: 4;
+    -moz-columns: 4;
+    columns: 4;
+}
+div#list{
+	height: 400px;
+	overflow-y: scroll;
+	width:820px;
+	overflow-x: hidden;
+	z-index:9999999;
+	position:absolute;
+	padding-top:0;
+	background-color:white;
+}
+
+div.filters {
+	font-size:18px;
+	padding: 15px 10px 0px 10px;
+	
+}
+
+div.checkBoxAlign {
+	position: relative;
+    width: 14px;
+    height: 14px;
+    background-color: transparent;
+    border: 1.4px solid #c2c2c2;
+    border-radius: 1.5px;
+    box-sizing: border-box;
+    display: inline-block;
+    vertical-align: middle;
+    cursor: pointer;
+}
+.hiddenCheckBox{
+	visibility: hidden;
+    position: absolute;
+}
+
+li a, .dropbtn, h3 {
+    display: inline-block;
+    color: white;
+    text-decoration: none;
+}
+
+li input,ul {
+	min-width:820px;
+}
+
+
+li a:hover, .dropdown:hover .dropbtn {
+    background-color: red;
+}
+
+li.dropdown {
+    display: inline-block;
+	float: none;
+	padding-left: 400px;
+	width:440px
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
+
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+a h3 {
+	color: black;
+	padding: 0;
+}
+.righticon{
+	background: url('../images/checked.png') left top no-repeat;
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	width: 2px;
+	height: 6px;
+	border: solid #fff;
+	border-width: 0 2px 2px 0;
+	-webkit-backface-visibility: hidden;
+	backface-visibility: hidden;
+	display: none;
+	background-position-x: center;
+    background-position-y: center;
+	border: 1.4px solid #E01080!important;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.switch input {display:none;}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}

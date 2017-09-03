@@ -1,0 +1,87 @@
+<div class="container" style="padding-top: 75px;">
+	<div class="row row-padding">
+		<div class="col-sm-2 language-color">
+			<span><h4 class="language-span-color">{{$ctrl.stateName}}</h4></span>
+		</div>
+	</div>
+	<div class="row language-item">
+		<div class="col-sm-8 repo-count">
+			  <span><h4>{{$ctrl.languageRes.total_count}} repository results</h4></span>
+			  <div class="seperateDiv"></div>
+		</div>
+		
+		<div class="col-sm-8">
+			<div ng-repeat="item in $ctrl.languageRes.items">
+					<div class="languageText">
+					<a ui-sref="users({userId:item.owner.login})">
+						<span><h3>{{item.full_name}}</h3></span>
+					</a>
+					<div class="languageDes" ng-if="item.language">
+						<span class="repo-language-color" style="background-color:#f1e05a;"></span>
+						<span>{{item.language}}</span>
+					</div>
+					<p>{{item.description}}</p></div>
+					<div class="seperateDiv"></div>
+				</div>
+		</div>
+		<div class="col-sm-4 repo-count" style="top: -65px;">
+			  <span><h4>Languages</h4></span>
+			  <div class="seperateDiv"></div>
+			  <div class="row">
+				<div class="col-sm-2 div-padding-l">Python</div>
+				<div class="col-sm-2 div-padding-left">9,894</div>
+			  </div>
+			  <div class="row">
+				<div class="col-sm-2 div-padding-l">Java</div>
+				<div class="col-sm-2 div-padding-left">9,761</div>
+			  </div>
+			  <div class="row">
+				<div class="col-sm-2 div-padding-l">JavaScript</div>
+				<div class="col-sm-2 div-padding-left">8,390</div>
+			  </div>
+			  <div class="row">
+				<div class="col-sm-2 div-padding-l">C</div>
+				<div class="col-sm-2 div-padding-left">7,571</div>
+			  </div>
+			  <div class="row">
+				<div class="col-sm-2 div-padding-l">C++</div>
+				<div class="col-sm-2 div-padding-left">5,563</div>
+			  </div><div class="row">
+				<div class="col-sm-2 div-padding-l">Ruby</div>
+				<div class="col-sm-2 div-padding-left">3,552</div>
+			  </div>
+			  <div class="row">
+				<div class="col-sm-2 div-padding-l">Go</div>
+				<div class="col-sm-2 div-padding-left">3,534</div>
+			  </div>
+			  <div class="row">
+				<div class="col-sm-2 div-padding-l">PHP</div>
+				<div class="col-sm-2 div-padding-left">3428</div>
+			  </div>
+			  <div class="row">
+				<div class="col-sm-2 div-padding-l">HTML</div>
+				<div class="col-sm-2 div-padding-left">2,978</div>
+			  </div>
+			  <div class="row">
+				<div class="col-sm-2 div-padding-l">C#</div>
+				<div class="col-sm-2 div-padding-left">2,868</div>
+			  </div>
+			</div>
+		</div>
+	</div>
+	<div class="row pagination-margin">
+		<div class="col-sm-12">
+			<ul ng-if="$ctrl.pager.pages.length && !$ctrl.searchRepoModel.name" class="pagination">
+				<li>
+					<a ng-click="$ctrl.setPage($ctrl.pager.currentPage - 1)" ng-class="{disabled:$ctrl.pager.currentPage === 1}">Previous</a>
+				</li>
+				<li ng-repeat="page in $ctrl.pager.pages">
+					<a ng-click="$ctrl.setPage(page)" ng-class="{active:$ctrl.pager.currentPage === page}">{{page}}</a>
+				</li>                
+				<li>
+					<a ng-click="$ctrl.setPage($ctrl.pager.currentPage + 1)" ng-class="{disabled:$ctrl.pager.currentPage === $ctrl.pager.totalPages}">Next</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>	

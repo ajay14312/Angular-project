@@ -1,0 +1,124 @@
+<div class="container-fluid container-padding">
+	<div class="row row-color">
+		<div class="col-sm-3">
+			<img class="repoOwnerImg" ng-src="{{$ctrl.userRepoData.avatar_url}}">
+		</div>
+		<div class="col-sm-9">
+			<div class="row">
+				
+			</div>
+			<div class="row">
+				<div class="col-sm-10 bottom-border">
+					<div class="row">
+						<div class="col-sm-2 div-cursor" ng-click="$ctrl.userNavData('overview')">
+							<p class="ailgn-text">Overview</p>
+							<div  ng-class="{divactive: $ctrl.usersearchType === 'overview'}"></div>
+						</div>
+						
+						<div class="col-sm-2 div-cursor" ng-click="$ctrl.userNavData('repos')">
+							<p class="p-width">Repositories<label class="data-counter">{{$ctrl.userReposLength}}</label></p> 
+							<div  ng-class="{divactive: $ctrl.usersearchType === 'repos'}"></div>
+						</div>
+						<div class="col-sm-2 div-cursor" ng-click="$ctrl.userNavData('stars')">
+							<p class="ailgn-text">Stars</p>
+							<div  ng-class="{divactive: $ctrl.usersearchType === 'stars'}"></div>
+						</div>
+						<div class="col-sm-2 div-cursor" ng-click="$ctrl.userNavData('followers')" ng-if="$ctrl.userFollowersLength>0">
+							<span>Followers<label class="data-counter" ng-if="$ctrl.userFollowersLength>0">{{$ctrl.userFollowersLength}}</label></span>
+							<div  ng-class="{divactive: $ctrl.usersearchType === 'followers'}"></div>
+						</div>
+						<div class="col-sm-2 div-cursor" ng-click="$ctrl.userNavData('following')" ng-if="$ctrl.userFollowersLength>0">
+							<span>Following<label class="data-counter" ng-if="$ctrl.userFollowingLength>0">{{$ctrl.userFollowingLength}}</label></span>
+							<div  ng-class="{divactive: $ctrl.usersearchType === 'following'}"></div>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-10 search-repo">
+					<input type="search" ng-model="$ctrl.searchRepoModel.name" class="form-control" placeholder="Search repositories…" autocomplete="off" ng-if="$ctrl.repos">
+				</div>
+				<div class="col-sm-5 div-padding div-margin div-border" ng-repeat="item in $ctrl.userRepos" ng-if="$ctrl.overview">
+					<span class="text-font-weight">{{item.name}}</span>
+					<p class="text-font">{{item.description}}</p>
+					<p>
+						<span ng-if="item.language">
+							<span class="repo-language-color" style="background-color:#f1e05a;"></span>
+							<span class="text-font">{{item.language}}</span>
+						</span>
+						<span class="left-margin" ng-if="item.stargazers_count">
+							<span><i class="fa fa-star" aria-hidden="true"></i></span>
+							<span class="text-font">{{item.stargazers_count}}</span>
+						</span>
+						<span class="left-margin" ng-if="item.forks_count">
+							<span><i class="fa fa-code-fork" aria-hidden="true"></i></span>
+							<span class="text-font">{{item.forks_count}}</span>
+						</span>
+					</p>
+				</div>
+				<div class="col-sm-5 div-padding div-margin div-border" ng-repeat="item in $ctrl.userRepos | filter:$ctrl.searchRepoModel:strict" ng-if="$ctrl.repos">
+					<span class="text-font-weight">{{item.name}}</span>
+					<p class="text-font">{{item.description}}</p>
+					<p>
+						<span ng-if="item.language">
+							<span class="repo-language-color" style="background-color:#f1e05a;"></span>
+							<span class="text-font">{{item.language}}</span>
+						</span>
+						<span class="left-margin" ng-if="item.stargazers_count">
+							<span><i class="fa fa-star" aria-hidden="true"></i></span>
+							<span class="text-font">{{item.stargazers_count}}</span>
+						</span>
+						<span class="left-margin" ng-if="item.forks_count">
+							<span><i class="fa fa-code-fork" aria-hidden="true"></i></span>
+							<span class="text-font">{{item.forks_count}}</span>
+						</span>
+					</p>
+				</div>
+				<div class="col-sm-5 div-padding div-margin div-border" ng-repeat="item in $ctrl.userRepos" ng-if="$ctrl.stars">
+					<span class="text-font-weight">{{item.name}}</span>
+					<p class="text-font">{{item.description}}</p>
+					<p>
+						<span ng-if="item.language">
+							<span class="repo-language-color" style="background-color:#f1e05a;"></span>
+							<span class="text-font">{{item.language}}</span>
+						</span>
+						<span class="left-margin" ng-if="item.stargazers_count">
+							<span><i class="fa fa-star" aria-hidden="true"></i></span>
+							<span class="text-font">{{item.stargazers_count}}</span>
+						</span>
+						<span class="left-margin" ng-if="item.forks_count">
+							<span><i class="fa fa-code-fork" aria-hidden="true"></i></span>
+							<span class="text-font">{{item.forks_count}}</span>
+						</span>
+					</p>
+				</div>
+				<div class="col-sm-5 div-padding div-margin div-border" ng-repeat="item in $ctrl.userFollowers" ng-if="$ctrl.followers">
+					<div class="imgText">
+					  <span><img ng-src="{{item.avatar_url}}"/></span>
+					  <span class="text-font-weight">{{item.login}}</span>
+					</div>
+				</div>
+				<div class="col-sm-5 div-padding div-margin div-border" ng-repeat="item in $ctrl.userFollowing" ng-if="$ctrl.following">
+					<div class="imgText">
+					  <span><img ng-src="{{item.avatar_url}}"/></span>
+					  <span class="text-font-weight">{{item.login}}</span>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+	</div>
+	<div class="row pagination-margin row-color">
+		<div class="col-sm-12">
+			<ul ng-if="$ctrl.pager.pages.length && !$ctrl.searchRepoModel.name" class="pagination">
+				<li>
+					<a ng-click="$ctrl.setPage($ctrl.pager.currentPage - 1)" ng-class="{disabled:$ctrl.pager.currentPage === 1}">Previous</a>
+				</li>
+				<li ng-repeat="page in $ctrl.pager.pages">
+					<a ng-click="$ctrl.setPage(page)" ng-class="{active:$ctrl.pager.currentPage === page}">{{page}}</a>
+				</li>                
+				<li>
+					<a ng-click="$ctrl.setPage($ctrl.pager.currentPage + 1)" ng-class="{disabled:$ctrl.pager.currentPage === $ctrl.pager.totalPages}">Next</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>	
