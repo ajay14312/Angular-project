@@ -1,2 +1,11 @@
 # Cast_TeechScan
 Tech scan project
+
+Hi,
+
+run 'npm install' command in Cast_TechScan cmd to install node modules.
+
+After node modules installed please run 'grunt serve' command in cmd to start the server.
+
+After server runs open http://localhost:433
+
