@@ -9,7 +9,7 @@
  */
 (function(){
 	'use strict';
-	var app = angular.module('earthAngularProject', ['ui.router']);
+	var app = angular.module('earthAngularProject', ['ui.router',"angular-loading-bar"]);
 	
 	app.config(function($stateProvider, $urlRouterProvider, ){
 		
@@ -17,27 +17,52 @@
 		
 		$stateProvider.state('home',{
 			url: '/',
-			template: '<home-component></home-component>'
+			template: '<home-component test="$resolve.test"></home-component>'
 		})
 		$stateProvider.state('javascript', {
 			url: '/javascript',
-			template: '<language-component></language-component>'
+			template: '<language-component languagedata = "$resolve.languagedata"></language-component>',
+			resolve: {
+				languagedata: function ($state$, languageService){
+					return languageService.load('repositories',$state$.name);
+				}
+			}
 		});
 		$stateProvider.state('java', {
 			url: '/java',
-			template: '<language-component></language-component>'
+			template: '<language-component languagedata = "$resolve.languagedata"></language-component>',
+			resolve: {
+				languagedata: function ($state$, languageService){
+					return languageService.load('repositories',$state$.name);
+				}
+			}
 		});
 		$stateProvider.state('python', {
 			url: '/python',
-			template: '<language-component></language-component>'
+			template: '<language-component languagedata = "$resolve.languagedata"></language-component>',
+			resolve: {
+				languagedata: function ($state$, languageService){
+					return languageService.load('repositories',$state$.name);
+				}
+			}
 		});
 		$stateProvider.state('php', {
 			url: '/php',
-			template: '<language-component></language-component>'
+			template: '<language-component languagedata = "$resolve.languagedata"></language-component>',
+			resolve: {
+				languagedata: function ($state$, languageService){
+					return languageService.load('repositories',$state$.name);
+				}
+			}
 		});
 		$stateProvider.state('ruby', {
 			url: '/ruby',
-			template: '<language-component></language-component>'
+			template: '<language-component languagedata = "$resolve.languagedata"></language-component>',
+			resolve: {
+				languagedata: function ($state$, languageService){
+					return languageService.load('repositories',$state$.name);
+				}
+			}
 		});
 		$stateProvider.state('users', {
 			url: '/users/:userId',
@@ -52,13 +77,13 @@
 	})
 	app.component('languageComponent',{
 		templateUrl: './views/language.html',
+		bindings: {  languagedata: '<' },
 		controller: function languageComponent($state, languageService){
 			var vm = this;
-			vm.repo = 'repositories';
 			vm.stateName = $state.$current.name;
-			languageService.load(vm.repo,vm.stateName).then(response =>{
-				vm.languageRes = response;
-			})
+			vm.$onInit = function(){
+			vm.languageRes = vm.languagedata;	
+			}
 		}
 	})
 	
@@ -263,4 +288,19 @@
             };
         }
 	})
+	app.directive('showDuringResolve', function($rootScope) {
+
+	  return {
+		link: function(scope, element) {
+
+		  element.addClass('ng-hide');
+
+		  var unregister = $rootScope.$on('$routeChangeStart', function() {
+			element.removeClass('ng-hide');
+		  });
+
+		  scope.$on('$destroy', unregister);
+		}
+	  };
+	});
 })();
