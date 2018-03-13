@@ -1,0 +1,31 @@
+<header>
+  <div>
+    <input type="text" placeholder="Search by" [(ngModel)]="searchPhrase" />
+    <button type="button" (click)="search(searchPhrase)" [disabled]="searchPhrase === ''">Search</button>
+
+    <button type="button" (click)="clear()" [disabled]="searchPhrase === ''">Clear</button>
+  </div>
+
+  <br/>
+  
+	<div>
+		Sort by:
+		<span class="link active" (click)="sortBy('name')">name</span> |
+		<span class="link" (click)="sortBy('price')">price</span>
+	</div>
+</header>
+
+<br/>
+
+<section>
+  <div><input type="checkbox" (change)="selectAll()" [checked]="isAllSelected"/> Select all <button [hidden]="!isAllSelected" (click)="removeAll()">removeAll</button></div>
+  <br/>
+  <div *ngFor="let product of products" [hidden]="showLoad">
+    <input type="checkbox" (change)="selectChange(product)" [checked]="product.checked"/>
+    {{ product.name }}
+    <b>{{ product.price }}$</b>
+    <button [hidden]="!product.checked || isAllSelected" (click)="removeProduct(product)">remove</button>
+  </div>
+
+  <div *ngIf="showLoad">Loading...</div>
+</section>
